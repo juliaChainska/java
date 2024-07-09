@@ -1,0 +1,26 @@
+.container {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .concert-name{
+    color: #b9005d; 
+}
+
+button {
+    margin-right: 8px;
+    margin-top: 20px ;
+  }
+
+
+.ticket-panel {
+    margin-bottom: 15px; 
+}
+
+.icon {
+    margin-right: 10px; 
+}
+
+.error-seat{
+    color: red;
+}

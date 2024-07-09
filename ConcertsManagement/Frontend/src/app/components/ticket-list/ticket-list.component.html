@@ -1,0 +1,40 @@
+<div class="container">
+    <h2>Tickets:</h2>
+    <ng-container *ngFor="let ticket of tickets; trackBy: trackByTicket">
+        <mat-expansion-panel class="ticket-panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon class="icon">add_shopping_cart</mat-icon>
+                    <b class="concert-name">{{ticket.concertName}}</b>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>
+                <p>Price: {{ticket.price}} $</p>
+                <p *ngIf="editedTicketId !== ticket.ticketId">
+                    Seat number: {{ticket.seatNumber}}
+                </p>
+                <button *ngIf="editedTicketId !== ticket.ticketId" mat-raised-button color="primary" class="edit-button"
+                    (click)="editSeatNumber(ticket.ticketId, ticket.seatNumber)">Edit</button>
+                <div *ngIf="editedTicketId === ticket.ticketId">
+                    <mat-form-field>
+                        <mat-label>New Seat Number</mat-label>
+                        <input matInput [(ngModel)]="newSeatNumber" [pattern]="regex" #seat="ngModel">
+                    </mat-form-field>
+                    <div *ngIf="seat.errors?.['pattern']" class="error-seat">
+                        Seat number not valid
+                    </div>
+                    <div class="button-group">
+                        <button mat-raised-button color="primary" class="save-button"
+                            (click)="saveSeatNumber(ticket.ticketId)">Save</button>
+                        <button mat-raised-button color="warn" class="cancel-button"
+                            (click)="cancelEdit()">Cancel</button>
+                    </div>
+                </div>
+                <button mat-raised-button color="warn" (click)="deleteTicket(ticket.ticketId)">Delete</button>
+            </div>
+        </mat-expansion-panel>
+    </ng-container>
+    <button mat-flat-button (click)="navigateToHome()">back</button>
+</div>
+
+

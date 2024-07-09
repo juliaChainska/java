@@ -1,0 +1,60 @@
+<div class="container">
+  <h2>Concerts</h2>
+  <table mat-table [dataSource]="concerts" class="mat-elevation-z8">
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <td mat-cell *matCellDef="let concert"> {{ concert.title }} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="location">
+      <th mat-header-cell *matHeaderCellDef> Location </th>
+      <td mat-cell *matCellDef="let concert"> {{ concert.location }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Date </th>
+      <td mat-cell *matCellDef="let concert"> {{ concert.date }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Price </th>
+      <td mat-cell *matCellDef="let concert"> {{ concert.price }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectConcert(row)" style="cursor: pointer;"></tr>
+  </table>
+</div>
+
+
+<div *ngIf="selectedConcert" class="container-list">
+  <h5>Artists for {{ selectedConcert.title }}</h5>
+  <mat-list>
+    <mat-list-item *ngFor="let artist of artists" (click)="selectArtist(artist.nick)">
+      <b class="artist_b">{{ artist.nick }}</b> - {{ artist.types }}
+    </mat-list-item>
+  </mat-list>
+
+
+<!-- <h5>Buy Ticket for {{ selectedConcert.title }}</h5> -->
+<h5>Buy Ticket</h5>
+<p>Concert title: {{ selectedConcert.title }}</p>
+<p>Price: {{ selectedConcert.price }} $</p>
+<form #ticketForm="ngForm" (ngSubmit)="addTicket(ticketForm.value)">
+  <mat-form-field>
+    <mat-label>Seat number</mat-label>
+    <input matInput type="text" id="seatNumber" name="seatNumber" ngModel #seatNumber="ngModel" required pattern="^[A-Za-z]\d{1,3}$">
+    <mat-error style="color: red;" *ngIf="seatNumber.invalid && seatNumber.touched">Seat number is required</mat-error>
+    <mat-error *ngIf="seatNumber.errors?.['pattern'] && seatNumber.touched">Seat number must match the pattern</mat-error>
+  </mat-form-field>
+  <br>
+  <button mat-flat-button color="primary" type="submit" [disabled]="ticketForm.invalid">Buy ticket</button>
+</form>
+<br>
+</div>
+
+<div>
+  <button class="ticket-button" mat-raised-button (click)="navigateToTicketList()">See your tickets</button>
+</div>
+
+

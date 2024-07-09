@@ -1,0 +1,42 @@
+h2 {
+    /* color: #832f87; */
+    color: #b9005d;
+    margin-top: 20px;  
+
+}
+
+.artist_b {
+    color: #b9005d;  
+}
+
+.container {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+.container-list {
+    margin-left: 20px;
+    margin-right: 20px;
+    line-height: 1.5;
+}
+
+h5 {
+    margin-top: 20px;    
+    margin-bottom: 10px; 
+}
+
+.error-message{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.ticket-button {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    
+  }
+
+
+
+
